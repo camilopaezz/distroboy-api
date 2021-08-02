@@ -33,7 +33,7 @@ app.post(
     const cover = req.files.cover[0]
     
     const songId = nanoid()
-    const songName = songId + '.mp3'
+    const songName = `${name}-${author}-${album}-${songId}.mp3`
     
     await fs.writeFile(`/tmp/${songName}`, song.buffer)
 
@@ -68,4 +68,4 @@ app.post(
   }
 )
 
-app.listen(process.env.PORT || 3005, () => console.log('Waiting for it'))
+app.listen(process.env.PORT || 3009, () => console.log('Waiting for it'))
