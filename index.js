@@ -68,4 +68,4 @@ app.post(
   }
 )
 
-app.listen(3005, () => console.log('Waiting for it'))
+app.listen(process.env.PORT || 3005, () => console.log('Waiting for it'))
