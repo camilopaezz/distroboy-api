@@ -13,6 +13,10 @@ app.use(cors())
 
 const uploads = multer()
 
+const formatString = (string) => {
+  return string.trim().split(' ').join('')
+}
+
 app.get('/', async (_, res) => {
   const songs = await fs.readdir('my-uploads') || []
   res.json({
@@ -33,7 +37,7 @@ app.post(
     const cover = req.files.cover[0]
     
     const songId = nanoid()
-    const songName = `${name}-${author}-${album}-${songId}.mp3`
+    const songName = `${formatString(name)}-${formatString(author)}-${formatString(album)}-${songId}.mp3`
     
     await fs.writeFile(`/tmp/${songName}`, song.buffer)
 
