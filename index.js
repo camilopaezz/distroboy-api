@@ -16,7 +16,7 @@ const uploads = multer()
 app.get('/', async (_, res) => {
   const songs = await fs.readdir('my-uploads') || []
   res.json({
-    allSong: songs
+    allSongs: songs
   })
 })
 
@@ -61,7 +61,7 @@ app.post(
     res
       .json({
         status: 'successfully send',
-        x: songName,
+        songName,
         error: null
       })
       .status(200)
