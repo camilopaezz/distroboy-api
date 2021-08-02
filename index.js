@@ -13,8 +13,15 @@ app.use(cors())
 
 const uploads = multer()
 
+app.get('/', async (_, res) => {
+  const songs = await fs.readdir('my-uploads') || []
+  res.json({
+    allSong: songs
+  })
+})
+
 app.post(
-  '/api/process',
+  '/',
   uploads.fields([
     { name: 'sound', maxCount: 1 },
     { name: 'cover', maxCount: 1 }
